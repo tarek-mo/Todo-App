@@ -1,38 +1,293 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap");
+
+:root {
+  /* ## Colors */
+
+  /* ### Primary */
+
+  --bright-blue: hsl(220, 98%, 61%);
+  --check-background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+
+  /* ### Neutral */
+
+  /* ### Light Theme */
+
+  --very-light-gray: hsl(0, 0%, 98%);
+  --very-light-grayish-blue: hsl(236, 33%, 92%);
+  --light-grayish-blue: hsl(233, 11%, 84%);
+  --dark-grayish-blue: hsl(236, 9%, 61%);
+  --very-Dark-grayish-blue: hsl(235, 19%, 35%);
+
+  /* ### Dark Theme */
+
+  --very-dark-blue: hsl(235, 21%, 11%);
+  --very-dark-desaturated-blue: hsl(235, 24%, 19%);
+  --light-grayish-blue: hsl(234, 39%, 85%);
+  --light-grayish-blue-hover: hsl(236, 33%, 92%);
+  --dark-grayish-blue: hsl(234, 11%, 52%);
+  --very-dark-grayish-blue: hsl(233, 14%, 35%);
+  --very-dark-grayish-blue: hsl(237, 14%, 26%);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+button {
+  cursor: pointer;
+  color: inherit;
+}
+
+input {
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.container {
+  max-width: 800px;
+  padding: 0 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  font-size: 18px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+}
+
+.bg-container {
+  background-image: url("./images/bg-mobile-light.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+
+/* Small	sm	≥576px
+Medium	md	≥768px
+Large	lg	≥992px */
+
+@media (min-width: 992px) {
+  .bg-container {
+    background-image: url("./images/bg-desktop-light.jpg");
+  }
+  body.dark .bg-container {
+    background-image: url("./images/bg-desktop-dark.jpg");
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 40px;
+}
+
+header button {
+  background: transparent;
+  border: none;
+}
+
+.sun-icon {
+  display: none;
+}
+
+.logo {
+  color: white;
+  letter-spacing: 13px;
+  font-size: 3rem;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 0 15px;
+  gap: 15px;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.todo-input {
+  flex-grow: 1;
+  border: none;
+  background: transparent;
+  padding: 15px 0;
+}
+
+.todo-input:focus {
+  border: none;
+  outline: none;
+}
+
+input[type="checkbox"] {
+  width: 1.3em;
+  height: 1.3em;
+  background: transparent;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid rgba(0, 0, 0, 0.416);
+  appearance: none;
+  -webkit-appearance: none;
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked {
+  background: url("./images/icon-check.svg"), var(--check-background);
+  border-color: transparent;
+  border-radius: 50%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+input[type="checkbox"]:hover {
+  border: 2px solid transparent;
+
+  border-radius: 50%;
+  background: linear-gradient(to right, white, white), var(--check-background);
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+}
+
+input[type="submit"] {
+  display: none;
+}
+
+.todos-container {
+  margin-top: -50px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  overflow: hidden;
+}
+
+.todo-container {
+  border-bottom: 1px solid rgba(128, 128, 128, 0.437);
+
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 15px;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.todos-footer {
+  padding: 15px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.todos-footer ul {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+}
+.todos-footer button {
+  border: none;
+  background: transparent;
+}
+.todos-footer {
+  /* color: #cecfd3 !important; */
+  color: #90909d;
+}
+/* #484A60 */
+.todos-footer .active {
+  color: #517acb;
+}
+
+.todos-footer button {
+  font-weight: 700;
+}
+
+.todos-footer button:hover {
+  color: #3d3f55;
+}
+.todo-container .flex {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.todo-container button {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.2s linear, opacity 0.2s linear;
+  border: none;
+  background: transparent;
+}
+.todo-container:hover button {
+  visibility: visible;
+  opacity: 1;
+}
+
+.todo-container p {
+  flex-grow: 1;
+  transition: color 0.2s linear;
+}
+
+.todo-container.completed p {
+  text-decoration: line-through;
+  color: #cecfd3;
+}
+
+/* dark mode */
+body.dark {
+  background: #181824;
+}
+
+body.dark .todos-footer button:hover {
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+body.dark .todo-container,
+body.dark .todos-footer {
+  background: #25273c;
+  color: #cbcde6;
+}
+/* body.dark .todos-footer .items-left {
+  color: #cecfd3 !important;
+} */
+body.dark .todo-container.completed p {
+  color: #4c4e63;
+}
+body.dark input[type="checkbox"] {
+  border-color: rgba(255, 255, 255, 0.437);
+}
+body.dark .bg-container {
+  background-image: url("./images/bg-mobile-dark.jpg");
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body.dark .input-container input::placeholder {
+  color: #787a8f;
 }
+
+body.dark .todo-input {
+  color: #cbcde6;
+}
+
+body.dark .sun-icon {
+  display: block;
+}
+
+body.dark .moon-icon {
+  display: none;
+}
+
+body.dark .input-container {
+  background: #25273c;
+}
+
+/* end of dark mode */
